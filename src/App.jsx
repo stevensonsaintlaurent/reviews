@@ -6,21 +6,16 @@ const App = () => {
   const { name, job, image, text } = people[index];
   const prevPerson = () => {
     setIndex((currentIndex) => {
-      const newIndex = currentIndex - 1;
-      if (newIndex < 0) {
-        return people.length - 1;
-      }
+      const newIndex = (currentIndex - 1 + people.length) % people.length;
 
       return newIndex;
     });
   };
-
+  console.log(2 % 3);
   const nextPerson = () => {
     setIndex((currentIndex) => {
-      const newIndex = currentIndex + 1;
-      if (newIndex > people.length - 1) {
-        return 0;
-      }
+      const newIndex = (currentIndex + 1) % people.length;
+
       return newIndex;
     });
   };
@@ -29,7 +24,8 @@ const App = () => {
     if (randomNumber === index) {
       randomNumber = index + 1;
     }
-    setIndex(randomNumber);
+    const newIndex = randomNumber % people.length;
+    setIndex(newIndex);
   };
   return (
     <main>
